@@ -2,6 +2,10 @@
 
 This application provides a rich, detailed haptic feedback profile for Euro Truck Simulator 2, specifically designed for the PlayStation 5 DualSense controller. It reads live telemetry data from the game to create immersive rumble and trigger effects that correspond to the truck's status and driver actions.
 
+
+DONWLOAD FROM THE [**RELEASE PAGE**](https://github.com/LikeARealG/ETS2_PS5_DualSense/releases/tag/v1.0) 
+
+
 This project stands on the shoulders of giants. It would not be possible without the incredible work from:
 
 * **RenCloud** for the [**scs-sdk-plugin**](https://github.com/RenCloud/scs-sdk-plugin), which provides the vital telemetry data from the game.  
