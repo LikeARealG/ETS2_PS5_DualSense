@@ -61,3 +61,7 @@ This profile includes a wide range of dynamic feedback effects:
 1. Run the “ETS2\_PS5\_DualSense.exe” application. Does not matter whether you run it before or after you start the game.
 2. A console window will appear, displaying live telemetry and effect status. You can minimize this window while you play.  
 3. To exit the application, simply press the **PlayStation button** on your controller or just close the window.
+
+## **Contact**
+
+If you wish to contact me for info/suggestions or anything else you can contact me on [**discord**](https://discordapp.com/users/383656009497051137)
