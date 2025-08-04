@@ -36,16 +36,15 @@ This profile includes a wide range of dynamic feedback effects:
 ## **Installation**
 
 1. **Install the SCS Telemetry Plugin (Crucial Step):**  
-   * Go to the [RenCloud/scs-sdk-plugin Releases page](https://github.com/RenCloud/scs-sdk-plugin/releases).  
-   * Download the latest scs-telemetry-x64.dll file.  
+   * Download the archive from [**RELEASES**](https://github.com/LikeARealG/ETS2_PS5_DualSense/releases/tag/v1.0) 
    * Navigate to your Euro Truck Simulator 2 installation directory.  
    * Place the scs-telemetry.dll file inside the following folder: steamapps\\common\\Euro Truck Simulator 2\\bin\\win\_x64\\plugins.  
    * **Note:** If the “plugins” folder does not exist inside win\_x64, you must create it.  
 2. **Prepare this Application:**  
-   * Ensure the ds5w\_x64.dll file (from DualSense-Windows) is in the same folder as the “ETS2\_PS5\_DualSense.exe” file.
+   * Ensure the ds5w_x64.dll file (from DualSense-Windows) is in the same folder as the “ETS2_PS5_DualSense.exe” file.
 
 ## **How to Use**
 
-1. Run the “ETS2\_PS5\_DualSense.exe” application. Does not matter when you run it, before or after you start the game, again, does not matter  
+1. Run the “ETS2\_PS5\_DualSense.exe” application. Does not matter whether you run it before or after you start the game.
 2. A console window will appear, displaying live telemetry and effect status. You can minimize this window while you play.  
-3. To exit the application, simply press the **PlayStation button** on your controller.
+3. To exit the application, simply press the **PlayStation button** on your controller or just close the window.
