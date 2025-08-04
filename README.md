@@ -51,9 +51,10 @@ This profile includes a wide range of dynamic feedback effects:
    * Download the archive from [**RELEASES**](https://github.com/LikeARealG/ETS2_PS5_DualSense/releases/tag/v1.0) 
    * Navigate to your Euro Truck Simulator 2 installation directory.  
    * Place the scs-telemetry.dll file inside the following folder: steamapps\\common\\Euro Truck Simulator 2\\bin\\win\_x64\\plugins.
-   * Ensure the "ds5w_x64.dll" file is in the same folder as the “ETS2_PS5_DualSense.exe” file.
+   
+     **Important:** Ensure the "ds5w_x64.dll" file is in the same folder as the “ETS2_PS5_DualSense.exe” file.
       
-        **Note:** If the “plugins” folder does not exist inside win\_x64, you must create it.    
+     **Note:** If the “plugins” folder does not exist inside win\_x64, you must create it.    
    
 
 ## **How to Use**
