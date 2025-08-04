@@ -32,7 +32,7 @@ This profile includes a wide range of dynamic feedback effects:
 
 
      | 5 LEDs | Blink | 4 LEDs | Blink | 3 LEDs | Blink | 2 LEDs | Blink | 1 LEDs | Blink  |
-     |:---:|:---:|:---::---:|:---:|:---:|:---:|:---::---:|:---:|
+     |  :---: | :---: | :---:  | :---: | :---:  | :---: | :---:  | :---: |  :---: |  :---: |
      |100-90% |  90-80%  | 80-70% |  70-60%  | 60-50% |  50-40%  | 40-30% |  30-20%  | 20-10% |   10-0%  |
 
   * **Status LightBar:** The lightbar wil be diffrent colors depending on the situation.
