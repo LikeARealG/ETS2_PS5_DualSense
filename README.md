@@ -10,8 +10,6 @@ This project stands on the shoulders of giants. It would not be possible without
 
 ## **Features**
 
-This profile includes a wide range of dynamic feedback effects:
-
 * **Engine Simulation:**  
   * **Engine Cranking:** Feel the rhythmic kick of the starter motor on the right side of the controller when turning the engine on.  
   * **Startup Lurch:** Experience a strong, satisfying rumble on the left side as the engine roars to life.  
@@ -57,11 +55,15 @@ This profile includes a wide range of dynamic feedback effects:
      **Note:** If the “plugins” folder does not exist inside win\_x64, you must create it.    
    
 
-## **How to Use**
+## **How to use**
 
 1. Run the “ETS2\_PS5\_DualSense.exe” application. Does not matter whether you run it before or after you start the game.
 2. A console window will appear, displaying live telemetry and effect status. You can minimize this window while you play.  
 3. To exit the application, simply press the **PlayStation button** on your controller or just close the window.
+
+## **For _DualSense Edge_ users**
+
+This application is made for the standard version of the controller, not for the Edge one, HOWEVER, you can use another software that emulates a standerd DualSense controller. For example [**DualSenseX**](https://store.steampowered.com/app/1812620/DSX/) with it's [**DLC**](https://store.steampowered.com/app/2345650/DSX__Virtual_DualSense_Emulation/). <sub>I wont provide a link but there is a ~~cracked~~ version of this software on the internet.....</sub>
 
 ## **Contact**
 
