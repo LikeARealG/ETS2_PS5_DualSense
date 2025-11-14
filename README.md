@@ -67,4 +67,4 @@ This application is made for the standard version of the controller, not for the
 
 ## **Contact**
 
-If you wish to contact me for info/suggestions or anything else you can contact me on [**discord**](https://discordapp.com/users/383656009497051137)
+If you wish to contact me for info/suggestions or anything else you can contact me on [**discord**](https://discordapp.com/users/383656009497051137) (LikeARealG)
