@@ -63,7 +63,11 @@ This project stands on the shoulders of giants. It would not be possible without
 
 ## **For _DualSense Edge_ users**
 
-This application is made for the standard version of the controller, not for the Edge one, HOWEVER, you can use another software that emulates a standerd DualSense controller. For example [**DualSenseX**](https://store.steampowered.com/app/1812620/DSX/) with it's [**DLC**](https://store.steampowered.com/app/2345650/DSX__Virtual_DualSense_Emulation/). <sub>I wont provide a link but there is a ~~cracked~~ version of this software on the internet.....</sub>
+This application is made for the standard version of the controller, not for the Edge one, HOWEVER, you can use another software that emulates a standerd DualSense controller. For example [**DualSenseX**](https://store.steampowered.com/app/1812620/DSX/) with it's [**DLC**](https://store.steampowered.com/app/2345650/DSX__Virtual_DualSense_Emulation/). <sub>I wont provide a link but there is a ~~cracked~~ version of this software on the internet.....</sub>-
+
+## **Updates**
+
+17.02.2026 - Added config file setup(will auto-create next to .exe)
 
 ## **Contact**
 
