@@ -69,6 +69,8 @@ This application is made for the standard version of the controller, not for the
 
 17.02.2026 - Added config file setup(will auto-create next to .exe)
 
+17.02.2026 V2 - Expanded config to be able to change the intensity of the vibration + UI changes
+
 ## **Contact**
 
 If you wish to contact me for info/suggestions or anything else you can contact me on [**discord**](https://discordapp.com/users/383656009497051137) (LikeARealG)
