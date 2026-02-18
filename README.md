@@ -65,11 +65,13 @@ This project stands on the shoulders of giants. It would not be possible without
 
 This application is made for the standard version of the controller, not for the Edge one, HOWEVER, you can use another software that emulates a standerd DualSense controller. For example [**DualSenseX**](https://store.steampowered.com/app/1812620/DSX/) with it's [**DLC**](https://store.steampowered.com/app/2345650/DSX__Virtual_DualSense_Emulation/). <sub>I wont provide a link but there is a ~~cracked~~ version of this software on the internet.....</sub>-
 
-## **Updates**
+## **Changelog**
 
 17.02.2026 - Added config file setup(will auto-create next to .exe)
 
 17.02.2026 V2 - Expanded config to be able to change the intensity of the vibration + UI changes
+
+18.02.2026 - Fixed issue regarding config file
 
 ## **Contact**
 
