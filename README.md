@@ -76,3 +76,13 @@ This application is made for the standard version of the controller, not for the
 ## **Contact**
 
 If you wish to contact me for info/suggestions or anything else you can contact me on [**discord**](https://discordapp.com/users/383656009497051137) (LikeARealG)
+
+## ⚖️ License & Redistribution
+
+This project is licensed under the **PolyForm Noncommercial License 1.0**.
+
+* **Personal Use:** You are free to use, modify, and share the code.
+* **No Selling:** You may **not** use or redistribute this software for commercial purposes or profit.
+* **Attribution:** If you repost or modify this, you **must** credit me (`LikeARealG`) and include the original license.
+
+See the [LICENSE](https://github.com/LikeARealG/ETS2_PS5_DualSense/blob/main/LICENSE) file for the full legal terms.
