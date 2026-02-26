@@ -77,6 +77,12 @@ This application is made for the standard version of the controller, not for the
 
 If you wish to contact me for info/suggestions or anything else you can contact me on [**discord**](https://discordapp.com/users/383656009497051137) (LikeARealG)
 
+## **Support the Project** ☕
+
+If you enjoy using this mod and want to support its development, you can buy me a coffee! Any support is greatly appreciated but never required.
+
+[**Support on Ko-fi**](https://ko-fi.com/likearealg)
+
 ## ⚖️ License & Redistribution
 
 This project is licensed under the **PolyForm Noncommercial License 1.0**.
