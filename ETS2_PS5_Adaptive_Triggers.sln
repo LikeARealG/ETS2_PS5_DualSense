@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36327.8 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ETS2_PS5_Adaptive_Triggers", "ETS2_PS5_Adaptive_Triggers\ETS2_PS5_Adaptive_Triggers.vcxproj", "{3DB51659-C17F-4A78-B538-D7DEB6563D41}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RimSteeringPlugin", "RimSteeringPlugin\RimSteeringPlugin.vcxproj", "{E9C0563B-46A5-49AE-BC4C-9AE4F58AB2F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,12 @@ Global
 		{3DB51659-C17F-4A78-B538-D7DEB6563D41}.Release|x64.Build.0 = Release|x64
 		{3DB51659-C17F-4A78-B538-D7DEB6563D41}.Release|x86.ActiveCfg = Release|Win32
 		{3DB51659-C17F-4A78-B538-D7DEB6563D41}.Release|x86.Build.0 = Release|Win32
+		{E9C0563B-46A5-49AE-BC4C-9AE4F58AB2F6}.Debug|x64.ActiveCfg = Debug|x64
+		{E9C0563B-46A5-49AE-BC4C-9AE4F58AB2F6}.Debug|x64.Build.0 = Debug|x64
+		{E9C0563B-46A5-49AE-BC4C-9AE4F58AB2F6}.Debug|x86.ActiveCfg = Debug|x64
+		{E9C0563B-46A5-49AE-BC4C-9AE4F58AB2F6}.Release|x64.ActiveCfg = Release|x64
+		{E9C0563B-46A5-49AE-BC4C-9AE4F58AB2F6}.Release|x64.Build.0 = Release|x64
+		{E9C0563B-46A5-49AE-BC4C-9AE4F58AB2F6}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

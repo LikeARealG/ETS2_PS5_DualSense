@@ -1,0 +1,3 @@
+EXPORTS
+    scs_input_init
+    scs_input_shutdown

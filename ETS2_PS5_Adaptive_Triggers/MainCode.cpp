@@ -12,6 +12,8 @@
 #include <vector>
 #include "ds5w.h"
 #include "scs-telemetry-common.hpp"
+#include "RimSteering.h"
+#include "RimSteeringChannel.h"
 
 const LPCWSTR ETS2_SHARED_MEMORY_NAME = SCS_PLUGIN_MMF_NAME;
 const float KMPH_CONVERSION = 3.6f;
@@ -68,6 +70,10 @@ static void overlay_text_into_truck(std::vector<std::string>& frame, const Truck
 static void animate_road_in_frame(std::vector<std::string>& frame, const TruckTemplate& tt, int phase);
 
 struct AppConfig {
+    bool rim_steering = false;
+    float rim_steering_lock_degrees = RimSteering::defaultLockDegrees;
+    float rim_steering_max_degree_deviation = RimSteering::defaultMaxDegreeDeviation;
+    float rim_steering_max_deviation_speed = RimSteering::defaultMaxDeviationSpeedKmph;
     bool fine_alert = true;
     bool park_brake_lightbar = true;
     bool retarder_lightbar = true;
@@ -499,20 +505,30 @@ static void write_default_config_if_missing(const std::wstring& configPath) {
     if (attrs != INVALID_FILE_ATTRIBUTES) return;
 
     std::ofstream out(configPath);
-    out << "# ETS2_PS5_Adaptive_Triggers config\n";
-    out << "Fine Alert (flash + rumble): 1              # 0=OFF, 1=ON\n";
-    out << "Park Brake Lightbar: 1                      # 0=OFF, 1=ON\n";
-    out << "Retarder Lightbar Pulse: 1                  # 0=OFF, 1=ON\n";
-    out << "Blinkers Lightbar: 1                        # 0=OFF, 1=ON\n";
-    out << "Warnings Mic LED: 1                         # 0=OFF, 1=ON\n";
-    out << "Fuel Player LEDs: 1                         # 0=OFF, 1=ON\n";
-    out << "Refuel Rumble: 1                            # multiplier 0.0-1.0 (0 disables)\n";
-    out << "Gear Jolt Rumble: 1                         # multiplier 0.0-1.0 (0 disables)\n";
-    out << "Engine Start Effects (cranking + lurch): 1  # multiplier 0.0-1.0 (0 disables)\n";
-    out << "Hard Braking Rumble: 1                      # multiplier 0.0-1.0 (0 disables)\n";
-    out << "Body Roll Rumble: 1                         # multiplier 0.0-1.0 (0 disables)\n";
-    out << "Brake Trigger Resistance: 1                 # multiplier 0.0-1.0 (0 disables)\n";
-    out << "Throttle Trigger Vibration: 1               # multiplier 0.0-1.0 (0 disables)\n";
+    out << "# ETS2_PS5_Adaptive_Triggers config\n"
+        << "Fine Alert (flash + rumble): 1                      # 0=OFF, 1=ON\n"
+        << "Park Brake Lightbar: 1                              # 0=OFF, 1=ON\n"
+        << "Retarder Lightbar Pulse: 1                          # 0=OFF, 1=ON\n"
+        << "Blinkers Lightbar: 1                                # 0=OFF, 1=ON\n"
+        << "Warnings Mic LED: 1                                 # 0=OFF, 1=ON\n"
+        << "Fuel Player LEDs: 1                                 # 0=OFF, 1=ON\n"
+        << "Refuel Rumble: 1                                    # multiplier 0.0-1.0 (0 disables)\n"
+        << "Gear Jolt Rumble: 1                                 # multiplier 0.0-1.0 (0 disables)\n"
+        << "Engine Start Effects (cranking + lurch): 1          # multiplier 0.0-1.0 (0 disables)\n"
+        << "Hard Braking Rumble: 1                              # multiplier 0.0-1.0 (0 disables)\n"
+        << "Body Roll Rumble: 1                                 # multiplier 0.0-1.0 (0 disables)\n"
+        << "Brake Trigger Resistance: 1                         # multiplier 0.0-1.0 (0 disables)\n"
+        << "Throttle Trigger Vibration: 1                       # multiplier 0.0-1.0 (0 disables)\n"
+        << "\n\n"
+        << "# RIM STEERING - check !!!READ_ME!!!.txt\n"
+        << "Rim Steering: 0                                     # 0=DISABLED, 1=ENABLED\n"
+        << "\n"
+        << "Rim Steering Max Degree Deviation: " << RimSteering::defaultMaxDegreeDeviation
+        << "                # DEFAULT=5, this means how many degrees of joystick you need turn to do 1 degree of wheel turn in game. If you set this to 1 then its 1 to 1 steering\n"
+        << "Rim Steering Max Deviation Speed: " << RimSteering::defaultMaxDeviationSpeedKmph
+        << "                # DEFAULT=90, this means at what speed you will hit the maximum degree diviation\n"
+        << "Rim Steering Lock Degrees: " << RimSteering::defaultLockDegrees
+        << "                      # DEFAULT=450, this means how much you can need to turn you joystick for a full turn TO EACH SIDE (so this would be a total of 900 degrees which is default in game)\n";
 }
 
 static AppConfig load_config(const std::wstring& configPath) {
@@ -546,7 +562,26 @@ static AppConfig load_config(const std::wstring& configPath) {
         auto setb = [&](bool& field) { field = parse_bool_value(val, field); };
         auto setbm = [&](bool& enabled, float& mult) { parse_bool_or_multiplier(val, enabled, mult); };
 
-        if (key == "fine alert (flash + rumble)" || key == "fine alert") setb(cfg.fine_alert);
+        if (key == "rim steering") setb(cfg.rim_steering);
+        else if (key == "rim steering lock degrees") {
+            float degrees = 0.0f;
+            if (try_parse_float(val, degrees) && degrees >= 30.0f && degrees <= 720.0f) {
+                cfg.rim_steering_lock_degrees = degrees;
+            }
+        }
+        else if (key == "rim steering max degree deviation") {
+            float ratio = 0.0f;
+            if (try_parse_float(val, ratio) && std::isfinite(ratio) && ratio >= 1.0f) {
+                cfg.rim_steering_max_degree_deviation = ratio;
+            }
+        }
+        else if (key == "rim steering max deviation speed") {
+            float speed = 0.0f;
+            if (try_parse_float(val, speed) && std::isfinite(speed) && speed > 0.0f) {
+                cfg.rim_steering_max_deviation_speed = speed;
+            }
+        }
+        else if (key == "fine alert (flash + rumble)" || key == "fine alert") setb(cfg.fine_alert);
         else if (key == "park brake lightbar") setb(cfg.park_brake_lightbar);
         else if (key == "retarder lightbar pulse" || key == "retarder lightbar") setb(cfg.retarder_lightbar);
         else if (key == "blinkers lightbar" || key == "blinker lightbar") setb(cfg.blinkers_lightbar);
@@ -697,6 +732,16 @@ int main() {
     write_default_config_if_missing(configPath);
     AppConfig config = load_config(configPath);
 
+    RimSteering rimSteering(config.rim_steering_lock_degrees,
+        config.rim_steering_max_degree_deviation, config.rim_steering_max_deviation_speed);
+    RimSteeringChannel::Publisher steeringAxis;
+    if (config.rim_steering) {
+        if (const char* error = steeringAxis.open()) {
+            std::cerr << "Rim steering: " << error << '\n';
+            return 1;
+        }
+    }
+
     TruckTemplate truckTemplate = load_truck_template(exeDir);
     if (truckTemplate.lines.empty()) std::cerr << "Warning: Could not initialize truck UI. Falling back to plain text UI." << std::endl;
 
@@ -704,7 +749,7 @@ int main() {
     scsTelemetryMap_t* telemetry = NULL;
     DS5W::DeviceEnumInfo infos[16];
     unsigned int controllersCount = 0;
-    DS5W::DeviceContext con;
+    DS5W::DeviceContext con{};
     bool controller_ready = false;
 
     std::string telemetryStatus = "Waiting for ETS2 telemetry (start the game)...";
@@ -717,12 +762,13 @@ int main() {
     while (true) {
         // Allow exit via PS button if controller is connected
         if (controller_ready) {
-            DS5W::DS5InputState inState;
-            DS5W::getDeviceInputState(&con, &inState);
-            if (inState.buttonsB & DS5W_ISTATE_BTN_B_PLAYSTATION_LOGO) {
+            DS5W::DS5InputState inState{};
+            if (DS5W_SUCCESS(DS5W::getDeviceInputState(&con, &inState)) &&
+                (inState.buttonsB & DS5W_ISTATE_BTN_B_PLAYSTATION_LOGO)) {
                 DS5W::freeDeviceContext(&con);
                 if (telemetry) UnmapViewOfFile(telemetry);
                 if (hMapFile) CloseHandle(hMapFile);
+                set_console_cursor_visibility(true);
                 return 0;
             }
         }
@@ -762,8 +808,11 @@ int main() {
         else {
             controllerStatus = "PS5 DualSense Controller found!";
             if (!controller_ready) {
-                DS5W::initDeviceContext(&infos[0], &con);
-                controller_ready = true;
+                controller_ready = DS5W_SUCCESS(DS5W::initDeviceContext(&infos[0], &con));
+                if (!controller_ready) {
+                    DS5W::freeDeviceContext(&con);
+                    controllerStatus = "Could not open the DualSense. Retrying...";
+                }
             }
         }
 
@@ -793,7 +842,7 @@ int main() {
         DS5W_OSTATE_PLAYER_LED_LEFT | DS5W_OSTATE_PLAYER_LED_MIDDLE_LEFT | DS5W_OSTATE_PLAYER_LED_MIDDLE | DS5W_OSTATE_PLAYER_LED_MIDDLE_RIGHT | DS5W_OSTATE_PLAYER_LED_RIGHT
     };
 
-    bool exitApp = false;
+    const char* steeringError = nullptr;
     int pulse_timer = 0;
     float previous_speed = 0.0f;
     bool previous_engine_state = false;
@@ -809,11 +858,31 @@ int main() {
     const float rpm_range = telemetry->config_f.engineRpmMax - IDLE_RPM;
     const float low_rpm_end = IDLE_RPM + (rpm_range * 0.20f);
     const float high_rpm_start = IDLE_RPM + (rpm_range * 0.70f);
+    constexpr auto effectsInterval = std::chrono::milliseconds(16);
+    auto nextEffectsUpdate = std::chrono::steady_clock::now();
 
-    while (!exitApp) {
-        DS5W::DS5InputState inState;
-        DS5W::getDeviceInputState(&con, &inState);
-        if (inState.buttonsB & DS5W_ISTATE_BTN_B_PLAYSTATION_LOGO) { exitApp = true; }
+    while (true) {
+        DS5W::DS5InputState inState{};
+        const bool inputReady = DS5W_SUCCESS(DS5W::getDeviceInputState(&con, &inState));
+        if (inputReady && (inState.buttonsB & DS5W_ISTATE_BTN_B_PLAYSTATION_LOGO)) break;
+
+        if (config.rim_steering) {
+            if (!inputReady) {
+                steeringError = "Lost the DualSense. Reconnect the controller and restart the app.";
+                break;
+            }
+            const double position = rimSteering.update(
+                static_cast<signed char>(inState.leftStick.x),
+                static_cast<signed char>(inState.leftStick.y),
+                telemetry->truck_f.speed * KMPH_CONVERSION);
+            steeringAxis.publish(position);
+
+            // Read steering on each HID report. Keep the frame-based effects
+            // and console refresh at their existing cadence.
+            const auto now = std::chrono::steady_clock::now();
+            if (now < nextEffectsUpdate) continue;
+            nextEffectsUpdate = now + effectsInterval;
+        }
 
         DS5W::DS5OutputState outState;
         ZeroMemory(&outState, sizeof(DS5W::DS5OutputState));
@@ -1023,11 +1092,13 @@ int main() {
         previous_gear = telemetry->truck_i.gear;
         previous_fined_state = telemetry->special_b.fined;
 
-        Sleep(16);
+        if (!config.rim_steering) Sleep(16);
     }
 
     // Restore cursor before exiting so console prompt behaves normally
     set_console_cursor_visibility(true);
+    if (config.rim_steering) steeringAxis.publish(0.0);
+    if (steeringError) std::cerr << '\n' << steeringError << '\n';
     std::cout << "\nExiting application. Resetting controller..." << std::endl;
     DS5W::DS5OutputState resetState;
     ZeroMemory(&resetState, sizeof(DS5W::DS5OutputState));
@@ -1038,5 +1109,5 @@ int main() {
     std::cout << "Cleanup complete. Goodbye!" << std::endl;
     Sleep(1000);
 
-    return 0;
+    return steeringError ? 1 : 0;
 }
