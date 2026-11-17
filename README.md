@@ -44,6 +44,14 @@ This project stands on the shoulders of giants. It would not be possible without
     * **Solid On:** A minor warning is active (e.g., low AdBlue, battery issue).  
     * **Pulsing:** A critical warning is active (e.g., low oil pressure, engine overheating, low air pressure, high chassis wear).
 
+
+### Joystick Rim Steering Mode
+
+Move the joystick around its outer rim to steer, just like turning a real steering wheel.
+
+[![Watch the Joystick Rim Steering demo on YouTube](https://i.ytimg.com/vi/vnQ1dSEJiCs/hqdefault.jpg)](https://youtu.be/vnQ1dSEJiCs)
+
+
 ## **Installation**
 
    * Download the archive from [**RELEASES**](https://github.com/LikeARealG/ETS2_PS5_DualSense/releases/tag/v1.0) 
