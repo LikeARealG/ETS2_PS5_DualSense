@@ -19,7 +19,8 @@ This project stands on the shoulders of giants. It would not be possible without
   * **Gear Jolt:** Get a sharp, two-stage "ka-thunk" jolt through the controller every time you shift gears.  
   * **Hard Braking Rumble:** Feel a strong, pulsating vibration during heavy deceleration, simulating the shudder of the brakes and tires.  
   * **Body Roll Rumble:** As your truck leans into a turn, a pulsating rumble on the same side of the controller signals the fact that you are starting to lean and possibly roll over.  
-  * **Brake Trigger Resistance:** The left trigger (brake) resistance increases with your speed, making it feel heavier and more realistic to brake from high speeds.  
+  * **Brake Trigger Resistance:** The left trigger (brake) resistance increases with your speed, making it feel heavier and more realistic to brake from high speeds.
+  * **Acceleration Trigger Resistance:** The left right (acceleration) resistance increases at the start and end of the RPM range, on one end you engine is on the brink of stalling and on the other end you engine is revving on the red line, drive in between these 2 points and there your trigger resistance is at minimum, indicating you've hit the sweet spot.  
 
 * **Events & Alerts:**  
   * **Fines & Collision Alert:** When you receive any type of fine (speeding, red light, collision, wrong way, etc.), the lightbar flashes red and blue, and the rumble motors alternate like police sirens for 5 seconds.  
@@ -45,11 +46,15 @@ This project stands on the shoulders of giants. It would not be possible without
     * **Pulsing:** A critical warning is active (e.g., low oil pressure, engine overheating, low air pressure, high chassis wear).
 
 
-### Joystick Rim Steering Mode
+### Joystick Rim Steering Mode - OFF by default
 
 Move the joystick around its outer rim to steer, just like turning a real steering wheel.
 
+Here is a demo of how it works plus a quick setup (includes a controller overlay so you see my left stick movement):
+
 [![Watch the Joystick Rim Steering demo on YouTube](https://i.ytimg.com/vi/vnQ1dSEJiCs/hqdefault.jpg)](https://youtu.be/vnQ1dSEJiCs)
+
+The exact steps to enable it are found in the README file that comes in the archive.
 
 
 ## **Installation**
@@ -61,7 +66,8 @@ Move the joystick around its outer rim to steer, just like turning a real steeri
      **Important:** Ensure the "ds5w_x64.dll" file is in the same folder as the “ETS2_PS5_DualSense.exe” file.
       
      **Note:** If the “plugins” folder does not exist inside win\_x64, you must create it.    
-   
+
+     **These steps are found in the README file in the archive as well <3**
 
 ## **How to use**
 
@@ -82,6 +88,8 @@ This application is made for the standard version of the controller, not for the
 18.02.2026 - Fixed issue regarding config file
 
 25.04.2026 - Fixed issue where the exe does not recognize the dll and cfg files
+
+17.11.2026 - Added Joystick Rim Steering mode
 
 ## **Contact**
 
